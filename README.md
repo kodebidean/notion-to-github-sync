@@ -1,8 +1,3 @@
-El Markdown en GitHub sí funciona perfectamente cuando lo añades al archivo `README.md`. Sin embargo, las secciones que mencionan comandos de shell, como `pip install` o la creación del archivo `.env`, deben estar correctamente formateadas usando bloques de código (triple backticks) para que se visualicen como código y no como texto plano.
-
-Voy a ajustar algunos detalles para asegurarme de que todo el contenido sea visualizado correctamente en GitHub y el Markdown funcione como se espera.
-
-Aquí te dejo la versión corregida del `README.md`:
 
 ---
 
