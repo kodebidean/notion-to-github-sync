@@ -153,9 +153,9 @@ def upload_to_github(file_path, content):
     except:
         repo.create_file(file_path, "Nuevo archivo desde Notion", content)
 
-# Recoger todas las subpages (unidades o pages) dentro de una page
+# Recoger todas las subpages (secciones o pages) dentro de una page
 def get_subpages(page_id):
-    # Obtener todos los bloques dentro de la page (page o DAM-2ºCURSO)
+    # Obtener todos los bloques dentro de la page
     blocks = notion.blocks.children.list(block_id=page_id).get("results")
     
     # Filtrar solo los bloques que son subpages
@@ -169,22 +169,22 @@ def sync_notion_to_github():
     # ID de la ruta raíz de notion
     NOTION_ROOT_ID = os.getenv('NOTION_ROOT_ID')
 
-    # Obtener las pages (subpages) dentro de DAM-2ºCURSO
+    # Obtener las pages (subpages) dentro de la raíz de tu proyecto Notion
     pages = get_subpages(NOTION_ROOT_ID)
 
     for page in pages:
         # Crear carpeta para la page
         folder_path = page["title"].replace(' ', '_') + "/"
         
-        # Obtener las unidades (sub-subpages) dentro de la page
+        # Obtener las secciones (sub-subpages) dentro de la page
         subpages = get_subpages(page["page_id"])
         
         for subpage in subpages:
-            # Obtener el contenido de la unidad (sub-subpage)
+            # Obtener el contenido de la seccion (sub-subpage)
             blocks = get_notion_page_content(subpage["page_id"])
             markdown_content = convert_to_markdown(blocks)
             
-            # Crear archivo Markdown para la unidad dentro de la carpeta de la page
+            # Crear archivo Markdown para la seccion dentro de la carpeta de la page
             file_name = f"{folder_path}{subpage['title'].replace(' ', '_')}.md"
             upload_to_github(file_name, markdown_content)
 

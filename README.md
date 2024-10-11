@@ -141,7 +141,7 @@ Al final, tu estructura de carpetas será algo así:
 ```
 /tu_repositorio
   - .gitignore
-  - .env.example
+  - .env
   - notion_github.py  # El script principal
   - README.md         # Documentación del proyecto
   - LICENSE           # Licencia del proyecto (si decides incluirla)
